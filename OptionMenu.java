@@ -52,6 +52,43 @@ public class OptionMenu {
 	
 // ----
 	public void getAccountType(Account acc) throws IOException {
+		boolean end = false;
+		while(!end) {
+			try {
+				System.out.println("\nselect the account you want to access: ");
+				System.out.println("Type 1 - checking account");
+				System.out.println("Type 2 - savings account");
+				System.out.print("\nchoice:");
+				
+				int selection = menuInput.nextInt();
+				
+				switch(selection) {
+				case 1:
+					getChecking(acc);
+					break;	
+				case 2:
+					getSaving(acc);
+					break;
+				case 3:
+					end = true;
+					break;
+				default:
+					System.out.println("/ninvalid choice.");
+				}
+			}
+			catch(InputMismatchException e){
+				System.out.println("\ninvlaid choice.");
+				menuInput.next();
+			}
+			
+		}
+	}
+	
+	public void getChecking(Account acc){
+		
+	}
+	
+	public void getSaving(Account acc) {
 		
 	}
 	
