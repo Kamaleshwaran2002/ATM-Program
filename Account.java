@@ -27,4 +27,39 @@ public class Account {
 	public int getPinNumber() {
 		return pinNumber;
 	}
+
+	public Object getCheckingBalance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void getCheckingWithdrawInput() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void getCheckingDepositInput() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void getTransferInput(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getSavingBalance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void getSavingWithdrawInput() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void getSavingDepositInput() {
+		// TODO Auto-generated method stub
+		
+	}
 }
