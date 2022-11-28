@@ -46,11 +46,6 @@ public class OptionMenu {
 	}
 	
 // ----
-	public void createAccount() throws IOException{
-		System.out.println("account was create");
-	}
-	
-// ----
 	public void getAccountType(Account acc) throws IOException {
 		boolean end = false;
 		while(!end) {
@@ -85,12 +80,121 @@ public class OptionMenu {
 	}
 	
 	public void getChecking(Account acc){
-		
+		boolean end = false;
+		while(!end) {
+			try {
+				System.out.println("\nchecking account");
+				System.out.println("Type 1 - view balance");
+				System.out.println("Type 2 - withdraw funds");
+				System.out.println("Type 3 - deposit funds");
+				System.out.println("Type 4 - transfer funds");
+				System.out.println("Type 5 - exits");
+				System.out.println("/nchoice: ");
+				
+				int selection = menuInput.nextInt();
+				
+				switch(selection) {
+				case 1:
+					System.out.println("/nchecking account balance: "+moneyFormat.format(acc.getCheckingBalance()));
+					break;
+				case 2:
+					acc.getCheckingWithdrawInput();
+					break;
+				case 3: 
+					acc.getCheckingDepositInput();
+					break;
+				case 4:
+					acc.getTransferInput("checking");
+					break;
+				case 5:
+					end = true;
+					break;
+				default:
+					System.out.println("\ninvalid choice.");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("/ninvalid choice");
+				menuInput.close();
+			}
+		}
 	}
 	
 	public void getSaving(Account acc) {
-		
+		boolean end = false;
+		while(!end) {
+			try {
+				System.out.println("\nchecking account");
+				System.out.println("Type 1 - view balance");
+				System.out.println("Type 2 - withdraw funds");
+				System.out.println("Type 3 - deposit funds");
+				System.out.println("Type 4 - transfer funds");
+				System.out.println("Type 5 - exits");
+				System.out.println("/nchoice: ");
+				
+				int selection = menuInput.nextInt();
+				
+				switch(selection) {
+				case 1:
+					System.out.println("\nsavings account balance: "+	moneyFormat.format(acc.getSavingBalance()));
+					break;
+				case 2:
+					acc.getSavingWithdrawInput();
+					break;
+				case 3:
+					acc.getSavingDepositInput();
+					break;
+				case 4:
+					acc.getTransferInput("savings");
+					break;
+				case 5:
+					end = true;
+					break;
+				default:
+					System.out.println("\ninvlaid choice.");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("\ninvalid choice.");
+			}
+		}
 	}
+	
+// ----
+	public void createAccount() throws IOException{
+		int cst_no = 0;
+		boolean end = false;
+		while(!end) {
+			try {
+				System.out.println("enter your customer number");
+				cst_no = menuInput.nextInt();
+				Iterator it = data.entrySet().iterator();
+				
+				while(it.hasNext()) {
+					Map.Entry pair = (Map.Entry) it.next();
+					
+					if(!data.containsKey(cst_no)) {
+						end = true;
+					}
+				}
+				if(!end) {
+					System.out.println("\n this customer num is already register");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("\ninvalid choice.");
+				menuInput.next();
+			}
+		}
+		
+		System.out.println("\nenter pin to be registered");
+		int pin = menuInput.nextInt();
+		data.put(cst_no, new Account(cst_no,pin));
+		System.out.println("\nyour new accountt has been succesfully registered");
+		System.out.println("redirecting to login.....");
+		getLogin();
+	}
+		
 	
 //	----
 	public void mainMenu() throws IOException{
