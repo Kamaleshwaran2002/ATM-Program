@@ -13,6 +13,45 @@ public class OptionMenu {
 	DecimalFormat moneyFormat = new DecimalFormat("'$'	###,##0.00");
 	HashMap<Integer, Account> data = new HashMap<Integer, Account>();
 	
+	public void mainMenu() throws IOException{
+		data.put(987650, new Account(987650,000,1000,5000));
+		data.put(987651, new Account(987650,000,1000,5000));
+		boolean end = false;
+		
+		while(!end) {
+			try {
+				System.out.println("\n type-1 - log	in");
+				System.out.println("\n type-2 create account");
+				System.out.print("\nchoice: ");
+				
+				int choice = menuInput.nextInt();
+				
+				switch(choice) {
+				case 1:
+					getLogin();
+					end = true;
+					break;
+					
+				case 2:
+					createAccount();
+					end = true;
+					break;
+					
+				default:
+					System.out.println("\ninvalid choice");
+				}
+			}
+			
+			catch(InputMismatchException e) {
+				System.out.println("\ninvalid choice");
+				menuInput.next();
+			}
+		}
+		System.out.println("\n thank you for using thi ATM\n");
+		menuInput.close();
+		System.exit(0);
+	}
+	
 	public void  getLogin() throws IOException {
 		boolean end = false;
 		int customerNumber = 0;
@@ -44,8 +83,7 @@ public class OptionMenu {
 			}
 		}
 	}
-	
-// ----
+
 	public void getAccountType(Account acc) throws IOException {
 		boolean end = false;
 		while(!end) {
@@ -136,7 +174,7 @@ public class OptionMenu {
 				
 				switch(selection) {
 				case 1:
-					System.out.println("\nsavings account balance: "+	moneyFormat.format(acc.getSavingBalance()));
+					System.out.println("\nsavings account balance: "+moneyFormat.format(acc.getSavingBalance()));
 					break;
 				case 2:
 					acc.getSavingWithdrawInput();
@@ -160,7 +198,7 @@ public class OptionMenu {
 		}
 	}
 	
-// ----
+
 	public void createAccount() throws IOException{
 		int cst_no = 0;
 		boolean end = false;
@@ -194,48 +232,7 @@ public class OptionMenu {
 		System.out.println("redirecting to login.....");
 		getLogin();
 	}
-		
-	
-//	----
-	public void mainMenu() throws IOException{
-		data.put(987650, new Account(987650,000,1000,5000));
-		data.put(987651, new Account(987650,000,1000,5000));
-		boolean end = false;
-		
-		while(!end) {
-			try {
-				System.out.println("\n type-1 - log	in");
-				System.out.println("\n type-2 create account");
-				System.out.print("\nchoice: ");
-				
-				int choice = menuInput.nextInt();
-				
-				switch(choice) {
-				case 1:
-					getLogin();
-					end = true;
-					break;
-					
-				case 2:
-					createAccount();
-					end = true;
-					break;
-					
-				default:
-					System.out.println("\ninvalid choice");
-				}
-				
-			}
-			
-			catch(InputMismatchException e) {
-				System.out.println("\ninvalid choice");
-				menuInput.next();
-			}
-		}
-		System.out.println("\n thank you for using thi ATM\n");
-		menuInput.close();
-		System.exit(0);
-	}
+
 }
 
 	
