@@ -20,8 +20,9 @@ public class OptionMenu {
 		
 		while(!end) {
 			try {
-				System.out.println("\n type-1 - log	in");
-				System.out.println("\n type-2 create account");
+				System.out.println("\ntype-1 - log	in");
+				System.out.println("\ntype-2 create account");
+				System.out.println("\ntype-3 exit");
 				System.out.print("\nchoice: ");
 				
 				int choice = menuInput.nextInt();
@@ -37,6 +38,10 @@ public class OptionMenu {
 					end = true;
 					break;
 					
+				case 3:
+					end = true;
+					break;
+					
 				default:
 					System.out.println("\ninvalid choice");
 				}
@@ -47,7 +52,8 @@ public class OptionMenu {
 				menuInput.next();
 			}
 		}
-		System.out.println("\n thank you for using thi ATM\n");
+		
+		System.out.println("\nthank you for using thi ATM\n");
 		menuInput.close();
 		System.exit(0);
 	}
@@ -89,8 +95,9 @@ public class OptionMenu {
 		while(!end) {
 			try {
 				System.out.println("\nselect the account you want to access: ");
-				System.out.println("Type 1 - checking account");
+				System.out.println("Type 1 - current account");
 				System.out.println("Type 2 - savings account");
+				System.out.println("Type 3 - exit");
 				System.out.print("\nchoice:");
 				
 				int selection = menuInput.nextInt();
@@ -113,7 +120,6 @@ public class OptionMenu {
 				System.out.println("\ninvlaid choice.");
 				menuInput.next();
 			}
-			
 		}
 	}
 	
@@ -121,7 +127,7 @@ public class OptionMenu {
 		boolean end = false;
 		while(!end) {
 			try {
-				System.out.println("\nchecking account");
+				System.out.println("\ncurrent account");
 				System.out.println("Type 1 - view balance");
 				System.out.println("Type 2 - withdraw funds");
 				System.out.println("Type 3 - deposit funds");
@@ -133,7 +139,7 @@ public class OptionMenu {
 				
 				switch(selection) {
 				case 1:
-					System.out.println("/nchecking account balance: "+moneyFormat.format(acc.getCheckingBalance()));
+					System.out.println("/current account balance: "+moneyFormat.format(acc.getCheckingBalance()));
 					break;
 				case 2:
 					acc.getCheckingWithdrawInput();

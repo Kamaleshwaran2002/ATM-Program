@@ -51,13 +51,13 @@ public class Account {
 		
 		while(!end) { 
 			try {
-				System.out.println("\ncurrent checking account balance: "+moneyFormat.format(checkingBalance));
-				System.out.println("\namount you want to withdrawn from checking account: ");
+				System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
+				System.out.println("\namount you want to withdrawn from current account: ");
 				double amount = input.nextDouble();
 				
 				if((checkingBalance - amount) >=0 && amount >= 0) {
 					calCheckingWithdraw(amount);
-					System.out.println("\namount you want to withdrawn from checking account: ");
+					System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
 					end = true;
 				}
 				else {
@@ -77,12 +77,12 @@ public class Account {
 		boolean end = false;
 		while(!end) {
 			try {
-				System.out.println("\ncurrent checking account balance: "+moneyFormat.format(checkingBalance));
-				System.out.println("\namount you want to deposit from checking account: ");
+				System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
+				System.out.println("\namount you want to deposit from current account: ");
 				double amount = input.nextDouble();
 				if((checkingBalance + amount) >= 0 && amount >= 0) {
 					calCheckingDeposit(amount);
-					System.out.println("\ncurrent checking account balance: "+moneyFormat.format(checkingBalance));
+					System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
 					end = true;
 				}else {
 					System.out.println("\nbalance cannot be negative");
@@ -107,7 +107,7 @@ public class Account {
 				
 				if((savingBalance - amount) >=0 && amount >= 0) {
 					calSavingWithdraw(amount);
-					System.out.println("\namount you want to withdrawn from saving account: ");
+					System.out.println("\ncurrent savings account balance: "+moneyFormat.format(savingBalance));
 					end = true;
 				}
 				else {
@@ -157,11 +157,6 @@ public class Account {
 		return checkingBalance;
 	}
 
-	public void getTransferInput(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public double calSavingWithdraw(double amount) {
 			// TODO Auto-generated method stub
 			savingBalance = (savingBalance-amount);
@@ -170,8 +165,13 @@ public class Account {
 	
 	public double calSavingDeposit(double amount) {
 		// TODO Auto-generated method stub
-		savingBalance = (savingBalance-amount);
+		savingBalance = (savingBalance+amount);
 		return savingBalance;
+	}
+	
+	public void getTransferInput(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
