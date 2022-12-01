@@ -21,8 +21,8 @@ public class OptionMenu {
 		while(!end) {
 			try {
 				System.out.println("\ntype-1 - log	in");
-				System.out.println("\ntype-2 create account");
-				System.out.println("\ntype-3 exit");
+				System.out.println("type-2 create account");
+				System.out.println("type-3 exit");
 				System.out.print("\nchoice: ");
 				
 				int choice = menuInput.nextInt();
@@ -65,7 +65,7 @@ public class OptionMenu {
 		
 		while(!end) {
 			try {
-				System.out.print("\nenter you customer number:");
+				System.out.print("\nenter you customer number: ");
 				customerNumber = menuInput.nextInt();
 				System.out.print("\nenter your pin number: ");
 				pinNumber = menuInput.nextInt();
@@ -98,7 +98,7 @@ public class OptionMenu {
 				System.out.println("Type 1 - current account");
 				System.out.println("Type 2 - savings account");
 				System.out.println("Type 3 - exit");
-				System.out.print("\nchoice:");
+				System.out.print("\nchoice: ");
 				
 				int selection = menuInput.nextInt();
 				
@@ -133,13 +133,13 @@ public class OptionMenu {
 				System.out.println("Type 3 - deposit funds");
 				System.out.println("Type 4 - transfer funds");
 				System.out.println("Type 5 - exits");
-				System.out.println("/nchoice: ");
+				System.out.print("\nchoice: ");
 				
 				int selection = menuInput.nextInt();
 				
 				switch(selection) {
 				case 1:
-					System.out.println("/current account balance: "+moneyFormat.format(acc.getCheckingBalance()));
+					System.out.println("\ncurrent account balance: "+moneyFormat.format(acc.getCheckingBalance()));
 					break;
 				case 2:
 					acc.getCheckingWithdrawInput();
@@ -148,7 +148,7 @@ public class OptionMenu {
 					acc.getCheckingDepositInput();
 					break;
 				case 4:
-					acc.getTransferInput("checking");
+					acc.getTransferInput("checkings");
 					break;
 				case 5:
 					end = true;
@@ -158,7 +158,7 @@ public class OptionMenu {
 				}
 			}
 			catch(InputMismatchException e) {
-				System.out.println("/ninvalid choice");
+				System.out.println("\ninvalid choice");
 				menuInput.close();
 			}
 		}
@@ -174,7 +174,7 @@ public class OptionMenu {
 				System.out.println("Type 3 - deposit funds");
 				System.out.println("Type 4 - transfer funds");
 				System.out.println("Type 5 - exits");
-				System.out.println("/nchoice: ");
+				System.out.print("\nchoice: ");
 				
 				int selection = menuInput.nextInt();
 				
@@ -222,7 +222,7 @@ public class OptionMenu {
 					}
 				}
 				if(!end) {
-					System.out.println("\n this customer num is already register");
+					System.out.println("\nthis customer num is already register");
 				}
 			}
 			catch(InputMismatchException e) {
