@@ -101,13 +101,13 @@ public class Account {
 		
 		while(!end) { 
 			try {
-				System.out.println("\ncurrent savings account balance: "+moneyFormat.format(savingBalance));
+				System.out.println("\nsavings account balance: "+moneyFormat.format(savingBalance));
 				System.out.println("\namount you want to withdrawn from saving account: ");
 				double amount = input.nextDouble();
 				
 				if((savingBalance - amount) >=0 && amount >= 0) {
 					calSavingWithdraw(amount);
-					System.out.println("\ncurrent savings account balance: "+moneyFormat.format(savingBalance));
+					System.out.println("\nsavings account balance: "+moneyFormat.format(savingBalance));
 					end = true;
 				}
 				else {
@@ -127,7 +127,7 @@ public class Account {
 		boolean end = false;
 		while(!end) {
 			try {
-				System.out.println("\ncurrent savings account balance: "+moneyFormat.format(savingBalance));
+				System.out.println("\nsavings account balance: "+moneyFormat.format(savingBalance));
 				System.out.println("\namount you want to deposit from saving account: ");
 				double amount = input.nextDouble();
 				if((savingBalance + amount) >= 0 && amount >= 0) {
@@ -169,9 +169,95 @@ public class Account {
 		return savingBalance;
 	}
 	
-	public void getTransferInput(String string) {
+	public void getTransferInput(String accType) {
 		// TODO Auto-generated method stub
+		boolean end = false;
+		while(!end) {
+			try {
+				if(accType.equals("checkings")) {
+				System.out.println("\nselect an account you wish to transfer funds to: ");
+				System.out.println("1. savings");
+				System.out.println("2. exit");
+				System.out.print("\nchoice:");
+				int choice = input.nextInt();
+				
+				switch(choice) {
+				case 1:
+					System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
+					System.out.print("\namount you want to deposit into your saving account: ");
+					double amount = input.nextDouble();
+					
+					if((savingBalance+amount) >=0 && (checkingBalance-amount)>=0 && amount >=0) {
+						calcCheckTransfer(amount);
+						System.out.println("\nsavings account balance: "+moneyFormat.format(savingBalance));
+						System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
+						end = true;
+					}
+					else {
+						System.out.println("balance cannot be a negative");
+					}
+					break;
+					
+				case 2:
+					return ;
+					
+				default:
+					System.out.println("\ninvalid choice.");
+				}
+				
+				}
+				
+				else if(accType.equals("savings")) {
+					System.out.println("\nselect an account you wish to transfer funds to: ");
+					System.out.println("1. current");
+					System.out.println("2. exit");
+					System.out.print("\nchoice:");
+					int choice = input.nextInt();
+					
+					switch(choice) {
+					case 1:
+						System.out.println("\nsavings account balance: "+moneyFormat.format(savingBalance));
+						System.out.print("\namount you want to deposit into your current account: ");
+						double amount = input.nextDouble();
+						
+						if((savingBalance+amount) >=0 && (checkingBalance-amount)>=0 && amount >=0) {
+							calcSavingTransfer(amount);
+							System.out.println("\ncurrent account balance: "+moneyFormat.format(checkingBalance));
+							System.out.println("\savings account balance: "+moneyFormat.format(savingBalance));
+							end = true;
+						}
+						else {
+							System.out.println("balance cannot be a negative");
+						}
+						break;
+						
+					case 2:
+						return ;
+						
+					default:
+						System.out.println("\ninvalid choice.");
+					}
+					
+					}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("\ninvalid choice.");
+				input.next();
+			}
+		}
 		
+	}
+
+	public void calcCheckTransfer(double amount) {
+		// TODO Auto-generated method stub
+		checkingBalance = checkingBalance - amount;
+		savingBalance = savingBalance + amount;
+	}
+	
+	public void calcSavingTransfer(double amount) {
+		// TODO Auto-generated method stub
+		savingBalance = savingBalance - amount;
+		checkingBalance = checkingBalance + amount;
 	}
 
 }
